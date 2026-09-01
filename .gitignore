@@ -1,0 +1,23 @@
+# .NET build output
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local configuration / secrets
+appsettings.Development.json
+
+# Local RAG/vector data
+vector-store/
+src/RagAssignment.API/data/PDFs/
