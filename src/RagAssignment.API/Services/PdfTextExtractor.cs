@@ -1,6 +1,7 @@
 using RagAssignment.Api.Interfaces;
 using RagAssignment.Api.Models;
 using UglyToad.PdfPig;
+using UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor;
 
 namespace RagAssignment.Api.Services;
 
@@ -15,8 +16,6 @@ public class PdfTextExtractor : IPdfTextExtractor
                 filePath);
         }
 
-        var documentId = Path.GetFileNameWithoutExtension(filePath);
-
         var pages = new List<PdfPageContent>();
 
         using var document = PdfDocument.Open(filePath);
@@ -25,9 +24,9 @@ public class PdfTextExtractor : IPdfTextExtractor
         {
             pages.Add(new PdfPageContent
             {
-                DocumentId = documentId,
+                DocumentId = Path.GetFileNameWithoutExtension(filePath),
                 PageNumber = page.Number,
-                Text = page.Text
+                Text = ContentOrderTextExtractor.GetText(page)
             });
         }
 

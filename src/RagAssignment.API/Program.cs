@@ -1,5 +1,7 @@
 using RagAssignment.Api.Interfaces;
 using RagAssignment.Api.Services;
+using Qdrant.Client;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -14,7 +16,24 @@ builder.Services.AddHttpClient<IOllamaService, OllamaService>(client =>
 });
 builder.Services.AddScoped<IPdfTextExtractor, PdfTextExtractor>();
 builder.Services.AddHttpClient<PdfDownloadService>();
+builder.Services.AddScoped<ITextPreprocessor, TextPreprocessor>();
+builder.Services.AddScoped<IChunkingService, ChunkingService>();
 builder.Services.AddOpenApi();
+builder.Services.AddHttpClient<IEmbeddingService, OllamaEmbeddingService>(
+    client =>
+    {
+        client.BaseAddress = new Uri(
+            builder.Configuration["Ollama:BaseUrl"]
+            ?? throw new InvalidOperationException(
+                "Ollama:BaseUrl is not configured."));
+    });
+builder.Services.AddSingleton<QdrantClient>(
+    _ => new QdrantClient(
+        host: "localhost",
+        port: 6334));
+        
+builder.Services.AddScoped<IQdrantService, QdrantService>();
+builder.Services.AddScoped<IRetrievalService, RetrievalService>();
 
 var app = builder.Build();
 app.MapControllers();
