@@ -1,5 +1,4 @@
 using Qdrant.Client;
-using Qdrant.Client.Grpc;
 using RagAssignment.Api.Interfaces;
 using RagAssignment.Api.Models;
 
@@ -30,18 +29,28 @@ public class RetrievalService : IRetrievalService
                 query,
                 cancellationToken);
 
+        var searchLimit = topK;
+
         var results = await _client.QueryAsync(
-    CollectionName,
-    queryEmbedding,
-    limit: (ulong)topK,
-    scoreThreshold: 0.40f,
-    cancellationToken: cancellationToken);
+            CollectionName,
+            queryEmbedding,
+            limit: (ulong)searchLimit,
+            scoreThreshold: 0.35f,
+            cancellationToken: cancellationToken);
 
         var chunks = new List<DocumentChunk>();
 
         foreach (var result in results)
         {
             var payload = result.Payload;
+
+            if (!payload.ContainsKey("documentId") ||
+                !payload.ContainsKey("pageNumber") ||
+                !payload.ContainsKey("chunkIndex") ||
+                !payload.ContainsKey("text"))
+            {
+                continue;
+            }
 
             chunks.Add(new DocumentChunk
             {
@@ -61,6 +70,8 @@ public class RetrievalService : IRetrievalService
             });
         }
 
-        return chunks;
+        return chunks
+            .Take(topK)
+            .ToList();
     }
 }

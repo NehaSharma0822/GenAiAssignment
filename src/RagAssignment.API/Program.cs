@@ -13,6 +13,8 @@ builder.Services.AddHttpClient<IOllamaService, OllamaService>(client =>
         builder.Configuration["Ollama:BaseUrl"]
         ?? throw new InvalidOperationException(
             "Ollama:BaseUrl is not configured."));
+
+    client.Timeout = TimeSpan.FromMinutes(3);
 });
 builder.Services.AddScoped<IPdfTextExtractor, PdfTextExtractor>();
 builder.Services.AddHttpClient<PdfDownloadService>();
@@ -34,6 +36,9 @@ builder.Services.AddSingleton<QdrantClient>(
         
 builder.Services.AddScoped<IQdrantService, QdrantService>();
 builder.Services.AddScoped<IRetrievalService, RetrievalService>();
+builder.Services.AddSingleton<
+    IConversationMemory,
+    ConversationMemoryService>();
 
 var app = builder.Build();
 app.MapControllers();
