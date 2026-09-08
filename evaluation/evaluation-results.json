@@ -1,0 +1,367 @@
+[
+  {
+    "Question": "What is the Transformer architecture?",
+    "Answer": "The Transformer architecture, as described in the document 1706.03762, is a model that follows a stacked self-attention and point-wise, fully connected layers for both the encoder and decoder. The overall architecture is shown in Figure 1. The encoder is composed of a stack of N = 6 identical layers, each having two sub-layers: a multi-head self-attention mechanism and a simple, position-wise fully connected feed-forward network. The decoder is also composed of a stack of N = 6 identical layers, with an additional sub-layer that performs multi-head attention over the output of the encoder stack.",
+    "Sources": [
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 3,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 9,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 4,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 3,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 10,
+        "ChunkIndex": 0
+      }
+    ],
+    "ExpectedKeywords": [
+      "attention",
+      "encoder",
+      "decoder"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "How many layers does the Transformer encoder have?",
+    "Answer": "According to Document 1706.03762, Page 3, the Transformer encoder has a stack of N = 6 identical layers.",
+    "Sources": [
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 3,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 4,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 17,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 10,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 9,
+        "ChunkIndex": 0
+      }
+    ],
+    "ExpectedKeywords": [
+      "6",
+      "layers"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "What are the two sub-layers in each encoder layer?",
+    "Answer": "According to Document 1706.03762, Page 3, the two sub-layers in each encoder layer are:\n\n1. A multi-head self-attention mechanism\n2. A simple, position-wise fully connected feed-forward network.",
+    "Sources": [
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 4,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 3,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 18,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 19,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 6,
+        "ChunkIndex": 0
+      }
+    ],
+    "ExpectedKeywords": [
+      "multi-head self-attention",
+      "feed-forward"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "What is multi-head attention?",
+    "Answer": "According to Document 1706.03762, Page 5, multi-head attention is a mechanism that allows the model to jointly attend to information from different representation subspaces at different positions. It is defined as:\n\nMultiHead(Q,K,V ) = Concat(head1,...,headh)WO\n\nwhere:\n\n* headi = Attention(QWQ i ,KWK i ,V WV i )\n* WQ i \u2208 Rdmodel\u00D7dk, WKi \u2208 Rdmodel\u00D7dk, WVi \u2208 Rdmodel\u00D7dv, and WO \u2208 Rhdv\u00D7dmodel.\n* h = 8 parallel attention layers, or heads.\n* dk = dv = dmodel/h = 64.\n\nThis allows the model to process multiple input sequences in parallel, while still being able to attend to all positions in the input sequence.",
+    "Sources": [
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 5,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 4,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 13,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 32,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 1,
+        "ChunkIndex": 0
+      }
+    ],
+    "ExpectedKeywords": [
+      "different representation subspaces",
+      "positions",
+      "heads"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "What is the role of positional encoding?",
+    "Answer": "According to Document 1706.03762, Page 5, positional encoding is added to the input embeddings at the bottoms of the encoder and decoder stacks to inject information about the relative or absolute position of the tokens in the sequence. The positional encodings have the same dimension dmodel as the embeddings, so that the two can be summed. In this work, the authors use sine and cosine functions of different frequencies as the positional encodings, with each dimension corresponding to a sinusoid.",
+    "Sources": [
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 5,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 5,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 2,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1706.03762",
+        "PageNumber": 6,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 15,
+        "ChunkIndex": 0
+      }
+    ],
+    "ExpectedKeywords": [
+      "position",
+      "sequence"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "Why does the decoder use masking?",
+    "Answer": "According to Document 1910.10683, Page 16, the decoder uses masking to prevent the model from attending to the jth entry of the input sequence for j \u003E i, which is known as \u0022causal\u0022 masking. This is used during training so that the model can\u0027t \u0022see into the future\u0022 as it produces its output.",
+    "Sources": [
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 15,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 21,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 18,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 16,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 4,
+        "ChunkIndex": 1
+      }
+    ],
+    "ExpectedKeywords": [
+      "future",
+      "attending"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "What is BERT\u0027s masked language model objective?",
+    "Answer": "According to Document 1910.10683, Page 16, BERT\u0027s masked language model objective is to randomly mask some of the tokens from the input and the objective is to predict the original vocabulary id of the masked token with maximum likelihood to predict the target sequence.",
+    "Sources": [
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 3,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 21,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 21,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1907.11692",
+        "PageNumber": 1,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 1,
+        "ChunkIndex": 1
+      }
+    ],
+    "ExpectedKeywords": [
+      "masked",
+      "tokens",
+      "reconstruct"
+    ],
+    "KeywordScore": 66.67
+  },
+  {
+    "Question": "What is Next Sentence Prediction in BERT?",
+    "Answer": "According to Document 1810.04805, Page 6, Next Sentence Prediction (NSP) is a task in which the model predicts whether the observed document segments come from the same or distinct documents. In the original BERT pretraining procedure, the model is trained to predict whether the observed document segments come from the same or distinct documents via an auxiliary NSP loss.",
+    "Sources": [
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 15,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 13,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1907.11692",
+        "PageNumber": 4,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 4,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 6,
+        "ChunkIndex": 1
+      }
+    ],
+    "ExpectedKeywords": [
+      "predict",
+      "document",
+      "segments"
+    ],
+    "KeywordScore": 100
+  },
+  {
+    "Question": "What is the main idea behind the T5 text-to-text framework?",
+    "Answer": "According to Document 1910.10683, Page 3, the main idea behind the T5 text-to-text framework is that every task, including translation, question answering, and classification, is cast as feeding the model text as input and training it to generate some target text. This allows the use of the same model, loss function, hyperparameters, etc. across diverse tasks, providing a standard testbed for methods included in the empirical survey.",
+    "Sources": [
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 41,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1810.04805",
+        "PageNumber": 15,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 2,
+        "ChunkIndex": 1
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 1,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 3,
+        "ChunkIndex": 0
+      }
+    ],
+    "ExpectedKeywords": [
+      "text-to-text",
+      "input",
+      "output"
+    ],
+    "KeywordScore": 66.67
+  },
+  {
+    "Question": "How many layers does its encoder have?",
+    "Answer": "According to Document 1910.10683, Page 4, the encoder consists of a stack of \u0022blocks\u0022, each of which comprises two subcomponents: a self-attention layer followed by a small feed-forward network. However, the exact number of layers in the encoder is not explicitly stated in this document.",
+    "Sources": [
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 41,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 17,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 4,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 19,
+        "ChunkIndex": 0
+      },
+      {
+        "DocumentId": "1910.10683",
+        "PageNumber": 4,
+        "ChunkIndex": 1
+      }
+    ],
+    "ExpectedKeywords": [
+      "12",
+      "layers"
+    ],
+    "KeywordScore": 50
+  }
+]
